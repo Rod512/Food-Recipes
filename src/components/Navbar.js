@@ -1,46 +1,51 @@
-import React, { Fragment,useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import logo from '../Img/logo.png'
-import { BsList } from "react-icons/bs";
-import { BsXLg } from "react-icons/bs";
+import { BsXLg,BsTextParagraph } from "react-icons/bs";
+
 
 const Navbar = () => {
-    const Links = [
-        {name:"HOME",link:'/'},
-        {name:"OUR CHIEF",link:'/'},
-        {name:"ABOUT",link:'/'},
+    let Links = [
+        {name:'Home', link:'/'},
+        {name:'About', link:'/'},
+        {name:'Our Chief', link:'/'}
     ]
 
-    const [open,setOpen] = useState(false)
-    const [close,setClose] = useState(true)
-    
+    const [isOpen,setisOpen] = useState(false)
     return (
-        <Fragment>
-            <div className='w-full mb-0 fixed top-0 left-0 md:px-40 px-7'>
-                <div className='flex items-center justify-between'>
-                    <div className='flex item-center'>
-                        <a href='/'><img className='w-20 cursor-pointer' src={logo} alt="" /></a>
+       <Fragment>
+            <div className='bg-white w-full fixed top-0 left-0'>
+                <div className='md:px-10 py-4 md:flex items-center justify-between'>
+                    <div className='flex items-center cursor-pointer'>
+                        <img className='w-16' src={logo} alt="" />
+                        <span className='font-bold text-yellow-600 text-xl'>Foodie</span>
                     </div>
 
-                    <div onClick={()=>setOpen(!open)} className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden'>
-                        <BsList name={open ? 'close':'menu'}></BsList>
-                    </div>
-
-
-                    <div className={`md:flex justify-between md:items-center md:pb-0 pb-12 absolute bg:white md:static md:z-auto z-[-1] right-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ':'top-[-490px]'}`}>
-                        <ul className='md:flex font-semibold' >
+                    <div className='absolute right-8 top-6 cursor-pointer text-3xl md:hidden'onClick={()=>setisOpen(!isOpen)} >
                         {
-                            Links.map((link)=>(
-                            <li key={link.name} className='md:ml-8 text-xl md:my-0 my-7'>
-                                <a href={link.link} className='text-gray-800 hover:text-gray-400 duration-500'>{link.name}</a>
-                            </li>
-                            ))
+                            isOpen ? <BsXLg/>:<BsTextParagraph/>
                         }
                         
-                        </ul>
                     </div>
+                    <ul className={`md:flex md:items-center pl-9 md:pl-0 md:pb-0 pb-12 absolute md:static md:z-auto z-[-1] left-0 w-full md:w-auto transition-all ease-in duration-500 bg-white ${isOpen ? 'top-12': 'top-[-490px]'}`}>
+                        {
+                            Links.map((link)=> 
+                                (
+                                    <li className='my-7 md:my-0 md:ml-8 font-semibold'><a href="/">{link.name}</a></li>
+                                    
+                                )
+                                
+                             )
+                             
+                        }
+                        <button className='btn bg-yellow-600 text-white py-1 px-3 rounded md:ml-8 md:static'>Start with us</button>
+                    </ul>
                 </div>
             </div>
-        </Fragment>
+
+            <div>
+             <h1>Foodie</h1>
+            </div>
+       </Fragment>
     );
 };
 
