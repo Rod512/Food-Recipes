@@ -42,9 +42,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div>
-             <h1>Foodie</h1>
-            </div>
+            
        </Fragment>
     );
 };
